@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
