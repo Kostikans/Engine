@@ -1,17 +1,18 @@
 #pragma once
-
-
 #include <gl/glew.h>
-
-namespace Engine {
+namespace Engine
+{
 	class VertexBuffer
 	{
+
 	private:
-		GLuint m_BufferID;
-		GLuint m_ComponentCount;
+		unsigned int m_RendererID;
 
 	public:
-		VertexBuffer(GLfloat *data, GLsizei count, GLuint componentCount = 0);
+		VertexBuffer(const GLfloat * data, unsigned int size);
+		~VertexBuffer();
+
+		
 		void Bind() const;
 		void Unbind() const;
 	};

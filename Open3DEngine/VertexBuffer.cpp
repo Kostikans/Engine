@@ -1,22 +1,23 @@
 #include "VertexBuffer.h"
+#include <gl/glew.h>
 
-Engine::VertexBuffer::VertexBuffer(GLfloat * data, GLsizei count, GLuint componentCount)
-	: m_ComponentCount(0)
+
+Engine::VertexBuffer::VertexBuffer(const GLfloat *data, unsigned int size)
 {
-	m_ComponentCount = componentCount;
-	
-	glGenBuffers(1, &m_BufferID);
-	glBindBuffer(GL_ARRAY_BUFFER, m_BufferID);
-	glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glGenBuffers(1, &m_RendererID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+	glBufferData(GL_ARRAY_BUFFER, size * sizeof(GLfloat) , data, GL_STATIC_DRAW);
 }
-
+Engine::VertexBuffer::~VertexBuffer()
+{
+	glDeleteBuffers(1, &m_RendererID);
+}
 void Engine::VertexBuffer::Bind() const
 {
-	glBindBuffer(GL_ARRAY_BUFFER, m_BufferID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 }
-
 void Engine::VertexBuffer::Unbind() const
 {
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 }
+

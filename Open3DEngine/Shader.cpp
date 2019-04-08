@@ -40,7 +40,8 @@ Engine::Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	const char* vShaderCode = vertexCode.c_str();
 	const char * fShaderCode = fragmentCode.c_str();
 
-	unsigned int vertex, fragment;
+	GLuint vertex , fragment ;
+
 
 	vertex = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertex, 1, &vShaderCode, NULL);

@@ -27,14 +27,19 @@ bool Engine::Window::Init()
 		std::cout << "failed to initialize GLFW" << std::endl;
 		return false;
 	}
+	
 	m_Window = glfwCreateWindow(m_Width, m_Height, m_Name, NULL, NULL);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	if (!m_Window)
 	{
 		glfwTerminate();
 		std::cout << "Failed to create GLFW Window" << std::endl;
 		return false;
 	}
-	glfwMakeContextCurrent(m_Window);
+	glfwMakeContextCurrent(m_Window);	
 	return true;
 }
 
