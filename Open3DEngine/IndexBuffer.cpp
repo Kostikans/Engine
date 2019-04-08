@@ -1,6 +1,7 @@
 #include "IndexBuffer.h"
 
-Engine::IndexBuffer::IndexBuffer(GLushort * data, GLsizei count, GLuint componentCount)
+Engine::IndexBuffer::IndexBuffer(GLushort * data, GLsizei count, GLuint componentCount = 0)
+    : m_ComponentCount(0)
 {
 	m_ComponentCount = componentCount;
 

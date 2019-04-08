@@ -19,6 +19,12 @@
     <Filter Include="Resource Files\Render\buffer">
       <UniqueIdentifier>{ba8db7f6-665f-4723-8fb0-95dba6eae47c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Render\stbi_Image">
+      <UniqueIdentifier>{fb63e246-b66e-4444-abc5-624523c90ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Render\Shader">
+      <UniqueIdentifier>{74d6e0ba-68bd-4571-9b47-1b623a1bf943}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>Resource Files\Render\buffer</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Resource Files\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Resource Files\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window\Window.h">
@@ -43,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>Resource Files\Render\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="stbi_image.h">
+      <Filter>Resource Files\Render\stbi_Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Resource Files\Render\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Resource Files\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

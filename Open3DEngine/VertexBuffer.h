@@ -11,7 +11,7 @@ namespace Engine {
 		GLuint m_ComponentCount;
 
 	public:
-		VertexBuffer(GLfloat *data, GLsizei count, GLuint componentCount);
+		VertexBuffer(GLfloat *data, GLsizei count, GLuint componentCount = 0);
 		void Bind() const;
 		void Unbind() const;
 	};

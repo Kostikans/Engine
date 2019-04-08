@@ -1,6 +1,7 @@
 #include "VertexBuffer.h"
 
 Engine::VertexBuffer::VertexBuffer(GLfloat * data, GLsizei count, GLuint componentCount)
+	: m_ComponentCount(0)
 {
 	m_ComponentCount = componentCount;
 	
