@@ -25,12 +25,15 @@
     <Filter Include="Resource Files\Render\Shader">
       <UniqueIdentifier>{74d6e0ba-68bd-4571-9b47-1b623a1bf943}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Camera">
+      <UniqueIdentifier>{23c1c365-a8a3-44f4-9456-33d9a7e4cdf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Window">
+      <UniqueIdentifier>{f60209af-47da-469c-af87-af2b9ac9039f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
@@ -48,11 +51,14 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>Resource Files\Render\buffer</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Resource Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Resource Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="window\Window.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>Resource Files\Render\buffer</Filter>
     </ClInclude>
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="VertexBufferLayout.h">
       <Filter>Resource Files\Render\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Resource Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Resource Files\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
