@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include <iostream>
+
 namespace Engine
 {	
 	Camera::Camera()
@@ -63,13 +64,13 @@ namespace Engine
 	{
 		
 		float diffx = x0offset, diffy = y0offset;
-		float angle = glm::length(glm::vec2(diffx, diffy)) / 150.0f;
+		float angle = glm::length(glm::vec2(diffx, diffy)) / 10.0f;
 
-		std::cout << angle << std::endl;
+		
 
 		glm::vec3 axis = glm::vec3(diffy, diffx, 0.0f);
 		std::cout << axis.x << ' ' << axis.y << std::endl;
-		glm::quat r = glm::angleAxis(angle, axis);
+		glm::quat r = glm::angleAxis(glm::radians(angle), axis);
 		rotateMatrix = glm::normalize(r * rotateMatrix);
 
 		viewMatrix = glm::mat4x4(1.0f);

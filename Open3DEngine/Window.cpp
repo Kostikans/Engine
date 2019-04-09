@@ -21,8 +21,8 @@ namespace Engine
 		if (keys[GLFW_MOUSE_BUTTON_LEFT] == 1)
 		{
 			
-			float xoffset = xpos - lastX;
-			float yoffset = ypos - lastY;
+			double xoffset = xpos - lastX;
+			double yoffset = ypos - lastY;
 			glfwGetCursorPos(window, &xpos, &ypos);
 			lastX = xpos;
 			lastY = ypos;

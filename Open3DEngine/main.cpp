@@ -94,7 +94,6 @@ int main()
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(45.0f), (float)Width / (float)Height, 0.1f, 100.0f);
 		float angle = 40.0f;
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -1.0f));
 		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
 
