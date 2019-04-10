@@ -68,7 +68,7 @@ namespace Engine
 
 		
 
-		glm::vec3 axis = glm::vec3(diffy, diffx, 0.0f);
+		glm::vec3 axis =  glm::vec3(diffy, diffx, 0.0f);
 		std::cout << axis.x << ' ' << axis.y << std::endl;
 		glm::quat r = glm::angleAxis(glm::radians(angle), axis);
 		rotateMatrix = glm::normalize(r * rotateMatrix);

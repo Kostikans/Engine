@@ -101,10 +101,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Open3DEngine\Open3DEngine\glm;H:\Open3DEngine\Open3DEngine\dependecies\glew-2.1.0\include;H:\Open3DEngine\Open3DEngine\dependecies\glfw-3.2.1.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/Open3DEngine/glm;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>H:\Open3DEngine\Open3DEngine\dependecies\glfw-3.2.1.bin.WIN32\lib-vc2015;H:\Open3DEngine\Open3DEngine\dependecies\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -124,12 +124,12 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Open3DEngine\Open3DEngine\glm;H:\Open3DEngine\Open3DEngine\dependecies\glew-2.1.0\include;H:\Open3DEngine\Open3DEngine\dependecies\glfw-3.2.1.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/Open3DEngine/glm;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>H:\Open3DEngine\Open3DEngine\dependecies\glfw-3.2.1.bin.WIN32\lib-vc2015;H:\Open3DEngine\Open3DEngine\dependecies\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
