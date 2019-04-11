@@ -13,102 +13,103 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "Camera.h"
+#include "Texture.h"
 
 using namespace Engine;
 
-const GLuint Width = 800;
-const GLuint Height = 600;
+const GLuint Width = 1400;
+const GLuint Height = 700;
 
 
 
 
 int main()
 {
-	Window window(Width, Height, "MyWindow");
+	Window window(Width,Height,"MyWindow");
 
 	glewInit();
 	Shader ourShader("BasicShader.vs", "BasicShader.fs");
 
 	GLfloat vertices[] = {
-	-0.5f, -0.5f, -0.5f,
-	 0.5f, -0.5f, -0.5f, 
-	 0.5f,  0.5f, -0.5f, 
-	 0.5f,  0.5f, -0.5f, 
-	-0.5f,  0.5f, -0.5f,  
-	-0.5f, -0.5f, -0.5f,  
+	    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 
-	-0.5f, -0.5f,  0.5f, 
-	 0.5f, -0.5f,  0.5f, 
-	 0.5f,  0.5f,  0.5f,  
-	 0.5f,  0.5f,  0.5f,  
-	-0.5f,  0.5f,  0.5f,  
-	-0.5f, -0.5f,  0.5f, 
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
 
-	-0.5f,  0.5f,  0.5f, 
-	-0.5f,  0.5f, -0.5f, 
-	-0.5f, -0.5f, -0.5f,  
-	-0.5f, -0.5f, -0.5f, 
-	-0.5f, -0.5f,  0.5f,  
-	-0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-	 0.5f,  0.5f,  0.5f,  
-	 0.5f,  0.5f, -0.5f,
-	 0.5f, -0.5f, -0.5f, 
-	 0.5f, -0.5f, -0.5f, 
-	 0.5f, -0.5f,  0.5f, 
-	 0.5f,  0.5f,  0.5f,  
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-	-0.5f, -0.5f, -0.5f,  
-	 0.5f, -0.5f, -0.5f,  
-	 0.5f, -0.5f,  0.5f,  
-	 0.5f, -0.5f,  0.5f,  
-	-0.5f, -0.5f,  0.5f,  
-	-0.5f, -0.5f, -0.5f,  
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
 
-	-0.5f,  0.5f, -0.5f,  
-	 0.5f,  0.5f, -0.5f, 
-	 0.5f,  0.5f,  0.5f,  
-	 0.5f,  0.5f,  0.5f,  
-	-0.5f,  0.5f,  0.5f, 
-	-0.5f,  0.5f, -0.5f,  
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
 
 	GLsizei size = 180;
 	VertexBuffer VBO(vertices, size);
 	VertexBufferLayout layout;
 	layout.push<GLfloat>(3);
+	layout.push<GLfloat>(2);
 	VertexArray VAO;
 	VAO.PushLayout(VBO, layout);
 
 	window.getCamera().translateCamera(glm::vec3(0.0f, 0.0f, -5.0f));
-	
+	Texture texture("a0LBcD.jpg");
+
 	glEnable(GL_DEPTH_TEST);
+	ourShader.use();
 	
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	while (!window.Close())
 	{
 		window.Clear();
 		ourShader.use();
-		window.getCamera();
+		texture.Bind();
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
 		glm::mat4 model = glm::mat4(1.0f);
-		glm::mat4 projection = glm::mat4(1.0f);
-		projection = glm::perspective(glm::radians(45.0f), (float)Width / (float)Height, 0.1f, 100.0f);
 		float angle = 40.0f;
 		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
 
-		ourShader.SetUniformMat4f("projection", projection);
+		ourShader.SetUniform1i("texture1", 0);
+		ourShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
 		ourShader.SetUniformMat4f("model", model);
 		window.getCamera().draw(ourShader);
 		
 		VAO.Bind();
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDrawArrays(GL_TRIANGLES, 0, 54);
 		
 		window.Update();
-	
-	
 	}
-
 	return 0;
 }
 

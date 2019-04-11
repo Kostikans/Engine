@@ -62,14 +62,22 @@ namespace Engine
 
 	void Camera::rotateFromInput(float x0offset, float y0offset)
 	{
-		
+
 		float diffx = x0offset, diffy = y0offset;
-		float angle = glm::length(glm::vec2(diffx, diffy)) / 10.0f;
-
-		
-
+		float angle = 0;
+		if (diffx != 0 && diffy == 0)
+		{
+			angle = glm::length(glm::vec2(diffx / diffx, diffy)) / 4.0f;
+		}
+		if (diffx == 0 && diffy != 0)
+		{
+			angle = glm::length(glm::vec2(diffx, diffy / diffy)) / 4.0f;
+		}
+		if (diffx != 0 && diffy != 0)
+		{
+			angle = glm::length(glm::vec2(diffx / diffx, diffy / diffy)) / 4.0f;
+	    }
 		glm::vec3 axis =  glm::vec3(diffy, diffx, 0.0f);
-		std::cout << axis.x << ' ' << axis.y << std::endl;
 		glm::quat r = glm::angleAxis(glm::radians(angle), axis);
 		rotateMatrix = glm::normalize(r * rotateMatrix);
 
