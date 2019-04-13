@@ -3,17 +3,17 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Window.h"
-#include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
-#include "Shader.h"
+#include "src/Window/Window.h"
+#include "src/render/buffer/VertexBuffer.h"
+#include "src/render/buffer/VertexBufferLayout.h"
+#include "src/render/buffer/VertexArray.h"
+#include "src/render/buffer/IndexBuffer.h"
+#include "src/render/Shader/Shader.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
-#include "OrbitalCamera.h"
-#include "Texture.h"
+#include "src/Camera/OrbitalCamera.h"
+#include "src/render/Texture/Texture.h"
 
 using namespace Engine;
 
@@ -28,9 +28,9 @@ int main()
 	Window window(Width,Height,"MyWindow");
 
 	glewInit();
-	Shader ourShader("BasicShader.vs", "BasicShader.fs");
-	Shader lightShader("LightShader.vs", "LightShader.fs");
-	Shader lampShader("lamp.vs", "lamp.fs");
+	Shader ourShader("src/render/Shader/BasicShader.vs", "src/render/Shader/BasicShader.fs");
+	Shader lightShader("src/render/Shader/LightShader.vs", "src/render/Shader/LightShader.fs");
+	Shader lampShader("src/render/Shader/lamp.vs", "src/render/Shader/lamp.fs");
 
 	GLfloat vertices[] = {
 		 -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "stbi_image.h"
+
 
 Engine::Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
