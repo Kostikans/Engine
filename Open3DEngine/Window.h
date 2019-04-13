@@ -7,7 +7,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "Shader.h"
-#include "Camera.h"
+#include "OrbitalCamera.h"
 
 namespace Engine {
 

@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "OrbitalCamera.h"
 #include <iostream>
 
 namespace Engine
@@ -58,6 +58,7 @@ namespace Engine
 		viewMatrix = viewMatrix * glm::mat4_cast(rotateMatrix);
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
+
 	}
 
 	void Camera::rotateFromInput(float x0offset, float y0offset)
@@ -84,9 +85,14 @@ namespace Engine
 		viewMatrix = glm::mat4x4(1.0f);
 		
 
-		viewMatrix = glm::translate(viewMatrix, transormation);
+		viewMatrix = glm::translate(viewMatrix, transormation);	
 		viewMatrix = viewMatrix * glm::mat4_cast(rotateMatrix);
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
+		
+	}
+	glm::mat4x4& Camera::GetViewMatrix()
+	{
+		return viewMatrix;
 	}
 }

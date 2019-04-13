@@ -12,7 +12,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
-#include "Camera.h"
+#include "OrbitalCamera.h"
 #include "Texture.h"
 
 using namespace Engine;
@@ -29,83 +29,116 @@ int main()
 
 	glewInit();
 	Shader ourShader("BasicShader.vs", "BasicShader.fs");
+	Shader lightShader("LightShader.vs", "LightShader.fs");
+	Shader lampShader("lamp.vs", "lamp.fs");
 
 	GLfloat vertices[] = {
-	    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		 -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
 
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
 
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
 
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
 	};
 
-	GLsizei size = 180;
+	GLsizei size = 290;
 	VertexBuffer VBO(vertices, size);
 	VertexBufferLayout layout;
+	layout.push<GLfloat>(3);
 	layout.push<GLfloat>(3);
 	layout.push<GLfloat>(2);
 	VertexArray VAO;
 	VAO.PushLayout(VBO, layout);
 
+	VertexBufferLayout Lamplayout;
+	Lamplayout.push<GLfloat>(3);
+	Lamplayout.push<GLfloat>(3);
+	Lamplayout.push<GLfloat>(2);
+	VertexArray VAOlamp;
+	VAOlamp.PushLayout(VBO, Lamplayout);
+
 	window.getCamera().translateCamera(glm::vec3(0.0f, 0.0f, -5.0f));
 	Texture texture("a0LBcD.jpg");
 
 	glEnable(GL_DEPTH_TEST);
-	ourShader.use();
+	lightShader.use();
 	
 	while (!window.Close())
 	{
+		float lightX = 2.0f * sin(glfwGetTime());
+		float lightY = 0.0f;
+		float lightZ = 1.5f * cos(glfwGetTime());
+		glm::vec3 lightPos = glm::vec3(lightX, lightY, lightZ);
 		window.Clear();
-		ourShader.use();
+		lightShader.use();
 		texture.Bind();
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		
+	
+		glm::vec3 viewPos = (glm::inverse(window.getCamera().GetViewMatrix()))[3];
 		glm::mat4 model = glm::mat4(1.0f);
-		float angle = 40.0f;
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
-
-		ourShader.SetUniform1i("texture1", 0);
-		ourShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
-		ourShader.SetUniformMat4f("model", model);
-		window.getCamera().draw(ourShader);
 		
+		lightShader.SetUniform3f("light.position", lightPos.x, lightPos.y, lightPos.z);
+		lightShader.SetUniform3f("viewPos", viewPos.x, viewPos.y, viewPos.z);
+		lightShader.SetUniform3f("material.specular", 0.5f, 0.5f, 0.5f);
+		lightShader.SetUniform1f("material.shininess", 64.0f);
+		lightShader.SetUniform3f("light.ambient", 0.2f, 0.2f, 0.2f);
+		lightShader.SetUniform3f("light.diffuse", 0.5f, 0.5f, 0.5f);
+		lightShader.SetUniform3f("light.specular", 1.0f, 1.0f, 1.0f);
+		
+
+		lightShader.SetUniform1i("material.diffuse", 0);
+		lightShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
+		lightShader.SetUniformMat4f("model", model);
+		window.getCamera().draw(lightShader);
+		
+	
 		VAO.Bind();
+		glDrawArrays(GL_TRIANGLES, 0, 54);
+
+		lampShader.use();
+		lampShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
+		window.getCamera().draw(lampShader);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, lightPos);
+		model = glm::scale(model, glm::vec3(0.2f)); 
+		lampShader.SetUniformMat4f("model", model);
+
+		VAOlamp.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 54);
 		
 		window.Update();

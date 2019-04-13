@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="OrbitalCamera.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Render.cpp" />
@@ -30,7 +30,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="OrbitalCamera.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="Shader.h" />
@@ -44,6 +44,10 @@
   <ItemGroup>
     <None Include="BasicShader.fs" />
     <None Include="BasicShader.vs" />
+    <None Include="lamp.fs" />
+    <None Include="lamp.vs" />
+    <None Include="LightShader.fs" />
+    <None Include="LightShader.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

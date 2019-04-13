@@ -29,7 +29,7 @@ namespace Engine
 		void scaleCamera(const float &s);
 		void setGlobalTransform(const glm::mat4x4 &g);
 		void rotateFromInput(float x0oofet,float y0offset);
-	
+		glm::mat4x4& GetViewMatrix();
 		
 	};
 }
