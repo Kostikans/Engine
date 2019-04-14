@@ -7,7 +7,7 @@
 namespace Engine
 {
 
-	Texture::Texture(const char *fileName)
+	Texturer::Texturer(const char *fileName)
 	{
 		glGenTextures(1, &textureID);
 		glBindTexture(GL_TEXTURE_2D, textureID);
@@ -31,12 +31,12 @@ namespace Engine
 		}
 		stbi_image_free(data);
 	}
-	void Texture::Bind()
+	void Texturer::Bind()
 	{
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 	}
-	void Texture::UnBind()
+	void Texturer::UnBind()
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}

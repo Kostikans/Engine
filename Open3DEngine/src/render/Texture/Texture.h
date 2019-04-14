@@ -4,13 +4,13 @@
 #include <GL/glew.h>
 
 namespace Engine {
-	class Texture
+	class Texturer
 	{
 	private:
 		GLuint textureID;
 		
 	public:
-		Texture(const char *fileName);
+		Texturer(const char *fileName);
 		void Bind();
 		void UnBind();
 	};

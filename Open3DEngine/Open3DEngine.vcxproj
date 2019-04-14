@@ -22,6 +22,7 @@
     <ClCompile Include="glm\detail\glm.cpp" />
     <ClCompile Include="src\Assimp\Mesh.cpp" />
     <ClCompile Include="src\Assimp\Model.cpp" />
+    <ClCompile Include="src\Camera\CameraWASD.cpp" />
     <ClCompile Include="src\Camera\OrbitalCamera.cpp" />
     <ClCompile Include="src\render\buffer\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="glm\vector_relational.hpp" />
     <ClInclude Include="src\Assimp\Mesh.h" />
     <ClInclude Include="src\Assimp\Model.h" />
+    <ClInclude Include="src\Camera\CameraWASD.h" />
     <ClInclude Include="src\Camera\OrbitalCamera.h" />
     <ClInclude Include="src\render\buffer\IndexBuffer.h" />
     <ClInclude Include="src\render\Render.h" />
@@ -522,11 +524,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/Open3DEngine;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/dependecies/assimp/include;$(SolutionDir)/../Open3DEngine/Open3DEngine;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/assimp/lib;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc140-mt.lib;opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -545,13 +547,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/Open3DEngine;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../Open3DEngine/dependecies/assimp/include;$(SolutionDir)/../Open3DEngine/Open3DEngine;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/include;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../Open3DEngine/dependecies/assimp/lib;$(SolutionDir)/../Open3DEngine/dependecies/glfw-3.2.1.bin.WIN32/lib-vc2015;$(SolutionDir)/../Open3DEngine/dependecies/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc140-mt.lib;opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

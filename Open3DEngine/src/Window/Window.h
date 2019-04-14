@@ -8,7 +8,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "src/render/Shader/Shader.h"
 #include "src/Camera/OrbitalCamera.h"
-
+#include "src/Camera/CameraWASD.h"
 namespace Engine {
 
 	class Window {
@@ -20,6 +20,7 @@ namespace Engine {
 		const char *m_Name;
 		static int m_Width, m_Height;	
 		static Camera camera;
+		static CameraWASD Cam3d;
 		static double xpos, ypos;
 		static double lastX;
 		static double lastY;
@@ -36,7 +37,6 @@ namespace Engine {
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 		static void window_refresh_callback(GLFWwindow* window);
 		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-
 		Window(GLuint Width, GLuint Height, const char *Name);
 		~Window();
 		bool Init();
@@ -47,7 +47,7 @@ namespace Engine {
 		GLuint getResY();
 		static float  getOffx();
 		static float  getOffy();
-		Camera &getCamera();
+		CameraWASD &getCamera();
 		glm::mat4x4 &GetProjectionMatrix();
 		
 	};

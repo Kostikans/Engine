@@ -14,6 +14,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "src/Camera/OrbitalCamera.h"
 #include "src/render/Texture/Texture.h"
+#include <src/Assimp/Model.h>
 
 using namespace Engine;
 
@@ -93,11 +94,10 @@ int main()
 	VAOlamp.PushLayout(VBO, Lamplayout);
 
 	window.getCamera().translateCamera(glm::vec3(0.0f, 0.0f, -5.0f));
-	Texture texture("a0LBcD.jpg");
-
+	Texturer texture("a0LBcD.jpg");
+	
 	glEnable(GL_DEPTH_TEST);
 	lightShader.use();
-	
 	while (!window.Close())
 	{
 		float lightX = 2.0f * sin(glfwGetTime());
@@ -107,11 +107,10 @@ int main()
 		window.Clear();
 		lightShader.use();
 		texture.Bind();
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	
+		glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
 		glm::vec3 viewPos = (glm::inverse(window.getCamera().GetViewMatrix()))[3];
 		glm::mat4 model = glm::mat4(1.0f);
-		
+	
 		lightShader.SetUniform3f("light.position", lightPos.x, lightPos.y, lightPos.z);
 		lightShader.SetUniform3f("viewPos", viewPos.x, viewPos.y, viewPos.z);
 		lightShader.SetUniform3f("material.specular", 0.5f, 0.5f, 0.5f);
@@ -119,7 +118,6 @@ int main()
 		lightShader.SetUniform3f("light.ambient", 0.2f, 0.2f, 0.2f);
 		lightShader.SetUniform3f("light.diffuse", 0.5f, 0.5f, 0.5f);
 		lightShader.SetUniform3f("light.specular", 1.0f, 1.0f, 1.0f);
-		
 
 		lightShader.SetUniform1i("material.diffuse", 0);
 		lightShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
@@ -129,7 +127,6 @@ int main()
 	
 		VAO.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 54);
-
 		lampShader.use();
 		lampShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
 		window.getCamera().draw(lampShader);

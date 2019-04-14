@@ -72,6 +72,9 @@
     <ClCompile Include="src\Assimp\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Camera\CameraWASD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\render\buffer\IndexBuffer.h">
@@ -831,6 +834,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Assimp\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera\CameraWASD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,7 +14,7 @@ namespace Engine
 	double Window::yoffset = 0;
 
 	Camera Window::camera;
-
+	CameraWASD Window::Cam3d;
 	void Window::cursor_position_callback(GLFWwindow * window, double xpos, double ypos)
 	{
 	
@@ -27,7 +27,7 @@ namespace Engine
 			lastX = xpos;
 			lastY = ypos;
 	
-			camera.rotateFromInput(xoffset, yoffset);
+			Cam3d.rotateFromInput(xoffset, yoffset);
 		}
 	
 	}
@@ -49,11 +49,11 @@ namespace Engine
 	{
 		if (yoffset > 0)
 		{
-			camera.translateCamera(glm::vec3(0.0f, 0.0f, 0.5f));
+			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.5f));
 		}
 		if (yoffset < 0)
 		{
-			camera.translateCamera(glm::vec3(0.0f, 0.0f, -0.5f));
+			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, -0.5f));
 		}
 	}
 
@@ -66,7 +66,7 @@ namespace Engine
 		m_Height = height;
 		if (Wid != width && hei != height)
 		{
-			ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
+			ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 1000.0f);
 	    }
 	
 	}
@@ -81,7 +81,24 @@ namespace Engine
 	}
 	void Window::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 	{
-		
+		if (key == GLFW_KEY_A && action == GLFW_PRESS)
+		{
+			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.01f));
+		}
+		if (key == GLFW_KEY_S && action == GLFW_PRESS)
+		{
+			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, -0.01f));
+		}
+		if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			glm::vec3 dir = Cam3d.GetDirection();
+			Cam3d.translateCamera(glm::vec3(dir.x/10.0f, dir.y/10.f, ((dir.z/10.f)+0.1f)));
+		}
+
+		if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		{
+			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.01f));
+		}
 	}
 	Window::Window(GLuint Width, GLuint Height, const char *Name)
 	{
@@ -122,7 +139,7 @@ namespace Engine
 			std::cout << "Failed to create GLFW Window" << std::endl;
 			return false;
 		}
-		ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 100.0f);
+		ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)m_Width / (float)m_Height, 0.1f, 1000.0f);
 
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_right_callback);
@@ -164,9 +181,9 @@ namespace Engine
 		return m_Height;
 	}
 
-	Camera  &Window::getCamera()
+	CameraWASD  &Window::getCamera()
 	{
-		return camera;
+		return Cam3d;
 	}
 
 	glm::mat4x4 & Window::GetProjectionMatrix()
