@@ -32,7 +32,7 @@ namespace Engine
 	{
 		transormation += t;
 		viewMatrix = glm::mat4x4(1.0f);
-
+		
 		viewMatrix = glm::translate(viewMatrix, transormation);
 		viewMatrix = viewMatrix * glm::mat4_cast(rotateMatrix);
 		viewMatrix = glm::scale(viewMatrix, scale);

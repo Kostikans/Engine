@@ -23,7 +23,7 @@ namespace Engine
 		viewMatrix = glm::mat4x4(1.0f);
 
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = viewMatrix * glm::mat4_cast(rotateQuat);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
@@ -32,9 +32,8 @@ namespace Engine
 	{
 		transormation += t;
 		viewMatrix = glm::mat4x4(1.0f);
-
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = viewMatrix *  glm::mat4_cast(rotateQuat);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
@@ -43,9 +42,8 @@ namespace Engine
 	{
 		scale *= s;
 		viewMatrix = glm::mat4x4(1.0f);
-
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = viewMatrix * glm::mat4_cast(rotateQuat);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
@@ -55,7 +53,7 @@ namespace Engine
 		viewMatrix = glm::mat4x4(1.0f);
 
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = viewMatrix * glm::mat4_cast(rotateQuat);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 
@@ -64,18 +62,15 @@ namespace Engine
 	void CameraWASD::rotateFromInput(float x0offset, float y0offset)
 	{
 
-
 		float yaw = 0 , pitch = 0;
 		yaw += x0offset/5.0f;
 		pitch += y0offset/5.0f;	
 		glm::quat r1 = glm::angleAxis(glm::radians(yaw), glm::vec3(0.0f,1.0f,0.0f));
 		glm::quat r2 = glm::angleAxis(glm::radians(pitch), glm::vec3(1.0f, 0.0f, 0.0f));
-		rotateQuat = glm::normalize(r2 * rotateQuat * r1);
-		glm::vec3 dir(0.0f, 0.0f, 0.0f);
-		glm::vec3 up(0.0f, 0.0f, 0.0f);
+		rotateQuat = r2 * rotateQuat * r1;
 		viewMatrix = glm::mat4x4(1.0f);
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = viewMatrix * glm::mat4_cast(rotateQuat);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 
@@ -85,10 +80,11 @@ namespace Engine
 		return viewMatrix;
 	}
 	glm::vec3 CameraWASD::GetDirection()
+	{	     
+		return glm::inverse(glm::mat4_cast(rotateQuat))[2];
+	}
+	glm::vec3 CameraWASD::GetUp()
 	{
-		    float x = 2 * (rotateQuat.x*rotateQuat.z + rotateQuat.w * rotateQuat.y);
-			float y = 2 * (rotateQuat.y*rotateQuat.z - rotateQuat.w * rotateQuat.x);
-			float z = 1 - 2 * (rotateQuat.x*rotateQuat.x + rotateQuat.y * rotateQuat.y);
-			return glm::vec3(x, y, z);
+		return glm::inverse(glm::mat4_cast(rotateQuat))[1];
 	}
 }

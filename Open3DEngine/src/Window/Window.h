@@ -37,6 +37,7 @@ namespace Engine {
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 		static void window_refresh_callback(GLFWwindow* window);
 		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		void cameraTranslate();
 		Window(GLuint Width, GLuint Height, const char *Name);
 		~Window();
 		bool Init();

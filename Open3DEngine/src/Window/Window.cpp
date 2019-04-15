@@ -49,11 +49,11 @@ namespace Engine
 	{
 		if (yoffset > 0)
 		{
-			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.5f));
+			Cam3d.scaleCamera(1.2f);
 		}
 		if (yoffset < 0)
 		{
-			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, -0.5f));
+			Cam3d.scaleCamera(0.8f);
 		}
 	}
 
@@ -81,23 +81,56 @@ namespace Engine
 	}
 	void Window::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 	{
-		if (key == GLFW_KEY_A && action == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
-			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.01f));
+			keys[GLFW_KEY_W] = 1;
 		}
-		if (key == GLFW_KEY_S && action == GLFW_PRESS)
+		else
+			keys[GLFW_KEY_W] = 0;
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		{
-			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, -0.01f));
+			keys[GLFW_KEY_S] = 1;
 		}
-		if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		else
+			keys[GLFW_KEY_S] = 0;
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			keys[GLFW_KEY_A] = 1;
+		}
+		else
+			keys[GLFW_KEY_A] = 0;
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			keys[GLFW_KEY_D] = 1;
+		}
+		else
+			keys[GLFW_KEY_D] = 0;
+	}
+	void Window::cameraTranslate()
+	{
+		if (keys[GLFW_KEY_W] == 1)
 		{
 			glm::vec3 dir = Cam3d.GetDirection();
-			Cam3d.translateCamera(glm::vec3(dir.x/10.0f, dir.y/10.f, ((dir.z/10.f)+0.1f)));
+			Cam3d.translateCamera(glm::vec3(dir.x / 20.0f, dir.y / 20.f, (dir.z / 20.f)));
 		}
-
-		if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		if (keys[GLFW_KEY_S] == 1)
 		{
-			Cam3d.translateCamera(glm::vec3(0.0f, 0.0f, 0.01f));
+			glm::vec3 dir = Cam3d.GetDirection();
+			Cam3d.translateCamera(-(glm::vec3(dir.x / 20.0f, dir.y / 20.f, (dir.z / 20.f))));
+		}
+		if (keys[GLFW_KEY_A] == 1)
+		{
+			glm::vec3 dir = Cam3d.GetDirection();
+			glm::vec3 up = Cam3d.GetUp();
+			glm::vec3 kek = glm::normalize(glm::cross(dir, up));
+			Cam3d.translateCamera(-(glm::vec3(kek.x / 20.0f, kek.y / 20.0f, kek.z / 20.f)));
+		}
+		if (keys[GLFW_KEY_D] == 1)
+		{
+			glm::vec3 dir = Cam3d.GetDirection();
+			glm::vec3 up = Cam3d.GetUp();
+			glm::vec3 kek = glm::normalize(glm::cross(dir, up));
+			Cam3d.translateCamera(glm::vec3(kek.x / 20.0f, kek.y / 20.0f, kek.z / 20.f));
 		}
 	}
 	Window::Window(GLuint Width, GLuint Height, const char *Name)
@@ -149,7 +182,6 @@ namespace Engine
 		glfwSetWindowRefreshCallback(m_Window, window_refresh_callback);
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwMakeContextCurrent(m_Window);
-		glfwSwapInterval(1);
 		return true;
 	}
 

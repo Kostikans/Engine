@@ -28,6 +28,7 @@ namespace Engine
 		void rotateFromInput(float x0oofet, float y0offset);
 		glm::mat4x4& GetViewMatrix();
 		glm::vec3 GetDirection();
+		glm::vec3 GetUp();
 
 	};
 }

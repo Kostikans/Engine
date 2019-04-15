@@ -107,7 +107,7 @@ int main()
 		window.Clear();
 		lightShader.use();
 		texture.Bind();
-		glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glm::vec3 viewPos = (glm::inverse(window.getCamera().GetViewMatrix()))[3];
 		glm::mat4 model = glm::mat4(1.0f);
 	
@@ -123,6 +123,7 @@ int main()
 		lightShader.SetUniformMat4f("projection", window.GetProjectionMatrix());
 		lightShader.SetUniformMat4f("model", model);
 		window.getCamera().draw(lightShader);
+		window.cameraTranslate();
 		
 	
 		VAO.Bind();
