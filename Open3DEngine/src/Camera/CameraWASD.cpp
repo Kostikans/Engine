@@ -10,6 +10,7 @@ namespace Engine
 		transormation = glm::vec3(0.0f, 0.0f, 0.0f);
 		viewMatrix = glm::mat4x4(1.0f);
 		rotateQuat = glm::quat(glm::angleAxis(0.0f, glm::vec3(0.0f, 0.0f, 0.0f)));
+		FOV = 45.0f;
 	}
 
 	void CameraWASD::draw(Shader  &shader)
@@ -17,7 +18,7 @@ namespace Engine
 		shader.SetUniformMat4f("view", viewMatrix);
 	}
 
-	void CameraWASD::rotateCamera(const glm::quat & r)
+	void CameraWASD::rotate(const glm::quat & r)
 	{
 		rotateQuat = r * rotateQuat;
 		viewMatrix = glm::mat4x4(1.0f);
@@ -28,23 +29,23 @@ namespace Engine
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
 
-	void CameraWASD::translateCamera(const glm::vec3 & t)
+	void CameraWASD::translate(const glm::vec3 & t)
 	{
 		transormation += t;
 		viewMatrix = glm::mat4x4(1.0f);
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
 
-	void CameraWASD::scaleCamera(const float & s)
+	void CameraWASD::scaleObject(const glm::vec3 & s)
 	{
 		scale *= s;
 		viewMatrix = glm::mat4x4(1.0f);
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 	}
 	void CameraWASD::setGlobalTransform(const glm::mat4x4 & g)
@@ -70,10 +71,19 @@ namespace Engine
 		rotateQuat = r2 * rotateQuat * r1;
 		viewMatrix = glm::mat4x4(1.0f);
 		viewMatrix = glm::translate(viewMatrix, transormation);
-		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = glm::scale(viewMatrix, scale);
+		viewMatrix = glm::mat4_cast(rotateQuat) * viewMatrix;
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 
+	}
+	void CameraWASD::zoom(double y0offset)
+	{
+		if (FOV >= 1.0f && FOV <= 45.0f)
+			FOV -= y0offset;
+		if (FOV <= 1.0f)
+			FOV = 1.0f;
+		if (FOV >= 45.0f)
+			FOV = 45.0f;
 	}
 	glm::mat4x4& CameraWASD::GetViewMatrix()
 	{
@@ -86,5 +96,9 @@ namespace Engine
 	glm::vec3 CameraWASD::GetUp()
 	{
 		return glm::inverse(glm::mat4_cast(rotateQuat))[1];
+	}
+	float CameraWASD::getZoom()
+	{
+		return FOV;
 	}
 }

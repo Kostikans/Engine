@@ -24,10 +24,12 @@
     <ClCompile Include="src\Assimp\Model.cpp" />
     <ClCompile Include="src\Camera\CameraWASD.cpp" />
     <ClCompile Include="src\Camera\OrbitalCamera.cpp" />
+    <ClCompile Include="src\item\SimpleObject.cpp" />
     <ClCompile Include="src\render\buffer\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\render\Render.cpp" />
     <ClCompile Include="src\render\Shader\Shader.cpp" />
+    <ClCompile Include="src\render\Texture\framebuffer\Framebuffer.cpp" />
     <ClCompile Include="src\render\Texture\Texture.cpp" />
     <ClCompile Include="src\render\buffer\VertexArray.cpp" />
     <ClCompile Include="src\render\buffer\VertexBuffer.cpp" />
@@ -279,14 +281,17 @@
     <ClInclude Include="src\Assimp\Model.h" />
     <ClInclude Include="src\Camera\CameraWASD.h" />
     <ClInclude Include="src\Camera\OrbitalCamera.h" />
+    <ClInclude Include="src\item\SimpleObject.h" />
     <ClInclude Include="src\render\buffer\IndexBuffer.h" />
     <ClInclude Include="src\render\Render.h" />
     <ClInclude Include="src\render\Shader\Shader.h" />
+    <ClInclude Include="src\render\Texture\framebuffer\Framebuffer.h" />
     <ClInclude Include="src\render\Texture\stbi_image.h" />
     <ClInclude Include="src\render\Texture\Texture.h" />
     <ClInclude Include="src\render\buffer\VertexArray.h" />
     <ClInclude Include="src\render\buffer\VertexBuffer.h" />
     <ClInclude Include="src\render\buffer\VertexBufferLayout.h" />
+    <ClInclude Include="src\Transformation.h" />
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -436,10 +441,16 @@
     <None Include="glm\gtx\wrap.inl" />
     <None Include="src\render\Shader\BasicShader.fs" />
     <None Include="src\render\Shader\BasicShader.vs" />
+    <None Include="src\render\Shader\DepthShader.fs" />
+    <None Include="src\render\Shader\DepthShader.vs" />
     <None Include="src\render\Shader\lamp.fs" />
     <None Include="src\render\Shader\lamp.vs" />
     <None Include="src\render\Shader\LightShader.fs" />
     <None Include="src\render\Shader\LightShader.vs" />
+    <None Include="src\render\Shader\ScreenShader.fs" />
+    <None Include="src\render\Shader\ScreenShader.vs" />
+    <None Include="src\render\Shader\ShadowMap.fs" />
+    <None Include="src\render\Shader\ShadowMap.vs" />
     <None Include="x64\Debug\Open3DEngine.tlog\CL.command.1.tlog" />
     <None Include="x64\Debug\Open3DEngine.tlog\Open3DEngine.lastbuildstate" />
     <None Include="x64\Debug\Open3DEngine.tlog\unsuccessfulbuild" />
@@ -459,7 +470,6 @@
     <Object Include="Debug\IndexBuffer.obj" />
     <Object Include="Debug\main.obj" />
     <Object Include="Debug\OrbitalCamera.obj" />
-    <Object Include="Debug\Render.obj" />
     <Object Include="Debug\Shader.obj" />
     <Object Include="Debug\Texture.obj" />
     <Object Include="Debug\VertexArray.obj" />

@@ -1,14 +1,16 @@
 #pragma once
-
-#include "Shader.h"
-#include "VertexBuffer.h"
-
+#include "src/item/SimpleObject.h"
+#include "src/render/Shader/Shader.h"
+#include <vector>
+#include "src/Window/Window.h"
 namespace Engine
 {
-	class renderer
+	class Render
 	{
+	private:
+		std::vector<SimpleObject> objects;
+
 	public:
-		
-		void clear() const;
+		void draw(Shader &shader);
 	};
 }

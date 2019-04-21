@@ -5,6 +5,11 @@ Engine::VertexArray::VertexArray()
 	glGenVertexArrays(1, &m_BufferID);
 }
 
+Engine::VertexArray::~VertexArray()
+{
+	glDeleteBuffers(1, &m_BufferID);
+}
+
 void Engine::VertexArray::PushLayout(const VertexBuffer &VBO, const VertexBufferLayout &layout)
 {
 	Bind();

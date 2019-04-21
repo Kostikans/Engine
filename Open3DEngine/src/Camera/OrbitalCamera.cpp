@@ -32,7 +32,6 @@ namespace Engine
 	{
 		transormation += t;
 		viewMatrix = glm::mat4x4(1.0f);
-		
 		viewMatrix = glm::translate(viewMatrix, transormation);
 		viewMatrix = viewMatrix * glm::mat4_cast(rotateMatrix);
 		viewMatrix = glm::scale(viewMatrix, scale);
@@ -64,29 +63,15 @@ namespace Engine
 	void Camera::rotateFromInput(float x0offset, float y0offset)
 	{
 
-		float diffx = x0offset, diffy = y0offset;
-		float angle = 0;
-		if (diffx != 0 && diffy == 0)
-		{
-			angle = glm::length(glm::vec2(diffx / diffx, diffy)) / 4.0f;
-		}
-		if (diffx == 0 && diffy != 0)
-		{
-			angle = glm::length(glm::vec2(diffx, diffy / diffy)) / 4.0f;
-		}
-		if (diffx != 0 && diffy != 0)
-		{
-			angle = glm::length(glm::vec2(diffx / diffx, diffy / diffy)) / 4.0f;
-	    }
-		glm::vec3 axis =  glm::vec3(diffy, diffx, 0.0f);
-		glm::quat r = glm::angleAxis(glm::radians(angle), axis);
-		rotateMatrix = glm::normalize(r * rotateMatrix);
-
+		float yaw = 0, pitch = 0;
+		yaw += x0offset / 5.0f;
+		pitch += y0offset / 5.0f;
+		glm::quat r1 = glm::angleAxis(glm::radians(yaw), glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::quat r2 = glm::angleAxis(glm::radians(pitch), glm::vec3(1.0f, 0.0f, 0.0f));
+		rotateMatrix = r2 * rotateMatrix * r1;
 		viewMatrix = glm::mat4x4(1.0f);
-		
-
-		viewMatrix = glm::translate(viewMatrix, transormation);	
-		viewMatrix = viewMatrix * glm::mat4_cast(rotateMatrix);
+		viewMatrix = glm::translate(viewMatrix, transormation);
+		viewMatrix = viewMatrix *  glm::mat4_cast(rotateMatrix) ;
 		viewMatrix = glm::scale(viewMatrix, scale);
 		viewMatrix = viewMatrix * (glm::inverse(globalTransform));
 		

@@ -9,10 +9,10 @@ namespace Engine
 		unsigned int m_RendererID;
 
 	public:
-		VertexBuffer(const GLfloat * data, unsigned int size);
+		VertexBuffer();
 		~VertexBuffer();
 
-		
+		void push(const GLfloat * data, unsigned int size);
 		void Bind() const;
 		void Unbind() const;
 	};

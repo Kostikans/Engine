@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -48,7 +48,8 @@ namespace Engine {
 		GLuint getResY();
 		static float  getOffx();
 		static float  getOffy();
-		CameraWASD &getCamera();
+		static CameraWASD &getCamera();
+		static glm::vec3 getViewPos();
 		glm::mat4x4 &GetProjectionMatrix();
 		
 	};

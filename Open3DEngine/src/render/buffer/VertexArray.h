@@ -13,7 +13,7 @@ namespace Engine {
 
 	public:
 		VertexArray();
-
+		~VertexArray();
 		void PushLayout(const VertexBuffer &VBO, const VertexBufferLayout &layout);
 		void Bind() const;
 		void Unbind() const;

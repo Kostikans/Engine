@@ -1,34 +1,35 @@
+#include "src/Transformation.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "glm/gtc/quaternion.hpp"
-#include "src/render/Shader/Shader.h"
-
 
 namespace Engine
 {
-	class CameraWASD
+	class CameraWASD : public Transformation
 	{
 	private:
 
-		float currentRot;
-		glm::vec3  scale;
+		glm::vec3 scale;
 		glm::vec3 transormation;
 		glm::mat4x4 viewMatrix;
 		glm::mat4x4 globalTransform;
 		glm::quat rotateQuat;
+		float FOV;
 
 	public:
 		CameraWASD();
 		void draw(Shader &shader);
-		void rotateCamera(const glm::quat &r);
-		void translateCamera(const glm::vec3 &t);
-		void scaleCamera(const float &s);
+		void rotate(const glm::quat &r);
+		void translate(const glm::vec3 &t);
+		void scaleObject(const glm::vec3 & s);
 		void setGlobalTransform(const glm::mat4x4 &g);
 		void rotateFromInput(float x0oofet, float y0offset);
+		void zoom(double y0offset);
 		glm::mat4x4& GetViewMatrix();
 		glm::vec3 GetDirection();
 		glm::vec3 GetUp();
+		float getZoom();
 
 	};
 }

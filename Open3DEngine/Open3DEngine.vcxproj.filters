@@ -51,9 +51,6 @@
     <ClCompile Include="src\render\Shader\Shader.cpp">
       <Filter>Resource Files\Render\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="src\render\Render.cpp">
-      <Filter>Resource Files\Render</Filter>
-    </ClCompile>
     <ClCompile Include="src\render\buffer\VertexBuffer.cpp">
       <Filter>Resource Files\Render\buffer</Filter>
     </ClCompile>
@@ -75,6 +72,15 @@
     <ClCompile Include="src\Camera\CameraWASD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\item\SimpleObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\Texture\framebuffer\Framebuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\Render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\render\buffer\IndexBuffer.h">
@@ -88,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="src\render\Shader\Shader.h">
       <Filter>Resource Files\Render\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render\Render.h">
-      <Filter>Resource Files\Render</Filter>
     </ClInclude>
     <ClInclude Include="src\render\buffer\VertexBuffer.h">
       <Filter>Resource Files\Render\buffer</Filter>
@@ -839,6 +842,18 @@
     <ClInclude Include="src\Camera\CameraWASD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Transformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\item\SimpleObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\Texture\framebuffer\Framebuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\Render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\render\Shader\LightShader.fs">
@@ -1272,6 +1287,12 @@
     <None Include="Debug\Open3DEngine.tlog\link.write.1.tlog" />
     <None Include="Debug\Open3DEngine.tlog\Open3DEngine.lastbuildstate" />
     <None Include="Debug\Open3DEngine.tlog\unsuccessfulbuild" />
+    <None Include="src\render\Shader\ScreenShader.fs" />
+    <None Include="src\render\Shader\ScreenShader.vs" />
+    <None Include="src\render\Shader\DepthShader.vs" />
+    <None Include="src\render\Shader\DepthShader.fs" />
+    <None Include="src\render\Shader\ShadowMap.vs" />
+    <None Include="src\render\Shader\ShadowMap.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="a0LBcD.jpg">
@@ -1286,7 +1307,6 @@
   <ItemGroup>
     <Object Include="Debug\IndexBuffer.obj" />
     <Object Include="Debug\main.obj" />
-    <Object Include="Debug\Render.obj" />
     <Object Include="Debug\Shader.obj" />
     <Object Include="Debug\OrbitalCamera.obj" />
     <Object Include="Debug\Texture.obj" />
