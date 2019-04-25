@@ -50,7 +50,7 @@ namespace Engine {
 		static float  getOffy();
 		static CameraWASD &getCamera();
 		static glm::vec3 getViewPos();
-		glm::mat4x4 &GetProjectionMatrix();
+		static glm::mat4x4 &GetProjectionMatrix();
 		
 	};
 }

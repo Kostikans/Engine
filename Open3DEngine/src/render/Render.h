@@ -3,6 +3,7 @@
 #include "src/render/Shader/Shader.h"
 #include <vector>
 #include "src/Window/Window.h"
+
 namespace Engine
 {
 	class Render
@@ -11,6 +12,7 @@ namespace Engine
 		std::vector<SimpleObject> objects;
 
 	public:
-		void draw(Shader &shader);
+		void draw();
+		void add(SimpleObject &object);
 	};
 }

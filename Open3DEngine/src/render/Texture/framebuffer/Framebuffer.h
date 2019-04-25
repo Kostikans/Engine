@@ -12,13 +12,13 @@ namespace Engine
 		GLuint framebufferID;
 		GLuint intermediateFBOID;
 		GLuint screenTextureID;
-		GLuint depthMapFBOID;
-		GLuint depthMapID;
+
 	public:
 		FrameBuffer();
 		void Bind();
 		void UnBind();
 		void Bindtex();
 		void MultiSample();
+		GLuint GetTexture();
 	};
 }

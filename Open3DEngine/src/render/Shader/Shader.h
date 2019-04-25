@@ -11,7 +11,8 @@ namespace Engine
 	{
 	public:
 		unsigned int ID;
-		Shader(const char* vertexPath, const char* fragmentPath);
+		Shader();
+		Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr);
 		void use();
 		void SetUniform4f(const std::string &name, float v0, float v1, float v2, float v3) const;
 		void SetUniform1f(const std::string &name, float value) const;
